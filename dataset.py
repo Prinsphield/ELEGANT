@@ -17,8 +17,7 @@ from PIL import Image
 class Config:
     @property
     def data_dir(self):
-        data_dir = '/home/xiaoth/datasets/celebA'
-        # data_dir = '/gpfs/share/home/1501210096/datasets/celebA'
+        data_dir = './datasets/celebA'
         if not os.path.exists(data_dir):
             os.makedirs(data_dir)
         return data_dir

@@ -2,17 +2,11 @@
 
 By Taihong Xiao, Jiapeng Hong and Jinwen Ma
 
-This repo is the pytorch implementation of ELEGANT. 
-
-<object data="https://prinsphield.github.io/CV/cv.pdf" type="extra/pdf" width="700px" height="700px">
-    <embed src="https://prinsphield.github.io/CV/cv.pdf">
-        This browser does not support PDFs. Please download the PDF to view it: <a href="https://prinsphield.github.io/CV/cv.pdf">Download PDF</a>.</p>
-    </embed>
-</object>
+This repo is the pytorch implementation of ELEGANT.
 
 ## Requirements
 
-- Python 2.7 or 3.5
+- [Python 2.7 or 3.x](https://www.python.org/)
 - [OpenCV 3](https://opencv.org/)
 - [Pytorch 0.3](http://pytorch.org/)
 - [TensorboardX](https://github.com/lanpa/tensorboard-pytorch)
@@ -29,6 +23,7 @@ the following directory tree structure in your repo.
 ├── datasets
 │   └── celebA
 │       ├── data
+│       ├── images.list
 │       ├── list_attr_celeba.txt
 │       └── list_landmarks_celeba.txt
 ```
@@ -36,7 +31,7 @@ the following directory tree structure in your repo.
 1. Run `python preprocess.py`. It will take only few minutes to preprocess all images.
 A new directory `datasets/celebA/align_5p` will be created.
 
-2. Run `python train.py -a Bangs Mustache -g 0` to train ELEGANT with respect to two attributes
+2. Run `python ELEGANT.py -m train -a Bangs Mustache -g 0` to train ELEGANT with respect to two attributes
 `Bangs` and `Mustache` simultaneuously. You can play with other attributes as well. Please refer
 to `list_attr_celeba.txt` for all available attributes.
 
@@ -61,7 +56,7 @@ We provide four types of mode for testing. Let me explain the parameters for tes
 
 ### 1. Swap Attribute
 
-We can swap the `Mustache` attribute of two images. The `--swap_list 1` indicates the second attribute should be swapped here. 
+We can swap the `Mustache` attribute of two images. The `--swap_list 1` indicates the second attribute should be swapped here.
 
     python ELEGANT.py -m test -a Bangs Mustache -r 34000 --swap --swap_list 1 --input ./images/goodfellow_aligned.png --target ./images/bengio_aligned.png
 
