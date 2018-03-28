@@ -99,3 +99,10 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+train_log/
+model/
+log/
+img/
+*.jpg
+*.png
