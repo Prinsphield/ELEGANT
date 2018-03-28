@@ -12,7 +12,7 @@ multiple face attriutes by exchanging latent encodings. The model framework is s
 <img align="center" src="extra/model.jpg" width="900" alt="model">
 </div>
 <div align="center">
-ELEGANT Model Framework
+The ELEGANT Model Framework
 </div>
 <br/>
 
