@@ -1,12 +1,11 @@
 # ELEGANT: Exchanging Latent Encodings with GAN for Transferring Multiple Face Attributes
 
-By Taihong Xiao, Jiapeng Hong and Jinwen Ma
+Taihong Xiao, Jiapeng Hong and Jinwen Ma
 
 
 ## Introduction
 
-This repo is the pytorch implementation of our paper. ELEGANT is a novel model for transferring
-multiple face attriutes by exchanging latent encodings. The model framework is shown below.
+This repo is the pytorch implementation of our [paper](https://arxiv.org/abs/1803.10562). ELEGANT is a novel model for transferring multiple face attriutes by exchanging latent encodings. The model framework is shown below.
 
 <div align="center">
 <img align="center" src="extra/model.jpg" width="900" alt="model">
