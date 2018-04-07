@@ -16,7 +16,6 @@ from itertools import chain
 
 
 class ELEGANT(object):
-    # def __init__(self, attributes, gpu, mode, restore=None, \
     def __init__(self, args,
                  config=config, dataset=MultiCelebADataset, \
                  encoder=Encoder, decoder=Decoder, discriminator=Discriminator):
@@ -216,17 +215,6 @@ class ELEGANT(object):
             for idx, image in enumerate(images):
                 self.writer.add_image(tag+'/{}_{:02d}'.format(self.attribute_id, idx), image, self.step)
 
-    # def save_sample_images(self, save_num=5):
-    #     img_A  = np.transpose(self.img_denorm(self.A.data.cpu().numpy()), (0,2,3,1)).astype(np.uint8)
-    #     img_B  = np.transpose(self.img_denorm(self.B.data.cpu().numpy()), (0,2,3,1)).astype(np.uint8)
-    #     img_C  = np.transpose(self.img_denorm(self.C.data.cpu().numpy()), (0,2,3,1)).astype(np.uint8)
-    #     img_D  = np.transpose(self.img_denorm(self.D.data.cpu().numpy()), (0,2,3,1)).astype(np.uint8)
-    #     img_A1 = np.transpose(self.img_denorm(self.A1.data.cpu().numpy()), (0,2,3,1)).astype(np.uint8)
-    #     img_B1 = np.transpose(self.img_denorm(self.B1.data.cpu().numpy()), (0,2,3,1)).astype(np.uint8)
-    #     for i in range(save_num):
-    #         img = np.concatenate((img_A[i], img_B[i], img_C[i], img_D[i], img_A1[i], img_B1[i]), axis=1)
-    #         Image.fromarray(img).save(os.path.join(self.config.img_dir, 'step_{:06d}_attr_{}_{:02d}.jpg'.format(self.step, self.attribute_id, i)))
-
     def save_sample_images(self, save_num=5):
         canvas = torch.cat((self.A, self.B, self.C, self.D, self.A1, self.B1), -1)
         img_array = np.transpose(self.img_denorm(canvas.data.cpu().numpy()), (0,2,3,1)).astype(np.uint8)
@@ -255,7 +243,6 @@ class ELEGANT(object):
         torch.save(self.Dec.state_dict(), os.path.join(self.config.model_dir, 'Dec_iter_{:06d}.pth'.format(self.step)))
         torch.save(self.D1.state_dict(),  os.path.join(self.config.model_dir, 'D1_iter_{:06d}.pth'.format(self.step)))
         torch.save(self.D2.state_dict(),  os.path.join(self.config.model_dir, 'D2_iter_{:06d}.pth'.format(self.step)))
-
 
     def train(self):
         self.writer = SummaryWriter(self.config.log_dir)
