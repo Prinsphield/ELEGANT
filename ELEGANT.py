@@ -168,12 +168,12 @@ class ELEGANT(object):
             'D1':   self.adv_criterion(self.d1_A, torch.ones_like(self.d1_A))  + \
                     self.adv_criterion(self.d1_B, torch.ones_like(self.d1_B))  + \
                     self.adv_criterion(self.d1_C, torch.zeros_like(self.d1_C)) + \
-                    self.adv_criterion(self.d1_D, torch.zeros_like(self.d1_C)),
+                    self.adv_criterion(self.d1_D, torch.zeros_like(self.d1_D)),
 
             'D2':   self.adv_criterion(self.d2_A, torch.ones_like(self.d2_A))  + \
                     self.adv_criterion(self.d2_B, torch.ones_like(self.d2_B))  + \
                     self.adv_criterion(self.d2_C, torch.zeros_like(self.d2_C)) + \
-                    self.adv_criterion(self.d2_D, torch.zeros_like(self.d2_C)),
+                    self.adv_criterion(self.d2_D, torch.zeros_like(self.d2_D)),
         }
         self.loss_D = (self.D_loss['D1'] + 0.5 * self.D_loss['D2']) / 4
 
