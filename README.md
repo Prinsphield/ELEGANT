@@ -52,14 +52,14 @@ to `list_attr_celeba.txt` for all available attributes.
 
 ## Testing
 
-We provide four types of mode for testing. Let me explain the parameters for testing.
+We provide four types of mode for testing. Let me explain all the parameters for testing.
 
 - `-a`: All attributes' names.
 - `-r`: Restore checkpoint.
 - `-g`: The gpu id(s) for testing. 
-	- Don't add this parameter to your command is you don't want to use gpu for testing.
+	- Don't add this parameter to your shell command if you don't want to use gpu for testing.
 - `--swap`: Swap attribute of two images.
-- `--linear`: Linear interpolation of adding or removing one certain attribute.
+- `--linear`: Linear interpolation by adding or removing one certain attribute.
 - `--matrix`: Matrix interpolation with respect to one or two attributes.
 - `--swap_list`: The attribute id(s) for testing.
 	- For example, `--swap_list 0` indicates the first attribute.
