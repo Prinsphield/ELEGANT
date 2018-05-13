@@ -50,12 +50,13 @@ class ELEGANT(object):
             self.D2.train()
 
             if self.gpu:
-                self.Enc.cuda(self.gpu[0])
-                self.Dec.cuda(self.gpu[0])
-                self.D1.cuda(self.gpu[0])
-                self.D2.cuda(self.gpu[0])
-                self.adv_criterion.cuda(self.gpu[0])
-                self.recon_criterion.cuda(self.gpu[0])
+                with torch.cuda.device(self.gpu[0]):
+                    self.Enc.cuda()
+                    self.Dec.cuda()
+                    self.D1.cuda()
+                    self.D2.cuda()
+                    self.adv_criterion.cuda()
+                    self.recon_criterion.cuda()
 
             if len(self.gpu) > 1:
                 self.Enc = torch.nn.DataParallel(self.Enc, device_ids=self.gpu)
@@ -68,8 +69,9 @@ class ELEGANT(object):
             self.Dec.eval()
 
             if self.gpu:
-                self.Enc.cuda(self.gpu[0])
-                self.Dec.cuda(self.gpu[0])
+                with torch.cuda.device(self.gpu[0]):
+                    self.Enc.cuda()
+                    self.Dec.cuda()
 
             if len(self.gpu) > 1:
                 self.Enc = torch.nn.DataParallel(self.Enc, device_ids=self.gpu)
