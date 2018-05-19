@@ -294,7 +294,7 @@ class ELEGANT(object):
                 if self.step % 2000 == 0:
                     self.save_sample_images()
 
-            print('step: {:06d}, loss D: {:.6f}, loss G: {:.6f}'.format(self.step, self.loss_D.data.cpu().numpy(), self.loss_G.data.cpu().numpy))
+            print('step: {:06d}, loss D: {:.6f}, loss G: {:.6f}'.format(self.step, self.loss_D.data.cpu().numpy(), self.loss_G.data.cpu().numpy()))
 
             if self.step % 100 == 0:
                 self.save_scalar_log()
