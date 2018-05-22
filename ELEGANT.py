@@ -241,10 +241,10 @@ class ELEGANT(object):
             self.writer.add_scalar(tag, value, self.step)
 
     def save_model(self):
-        torch.save(self.Enc.state_dict(), os.path.join(self.config.model_dir, 'Enc_iter_{:06d}.pth'.format(self.step)))
-        torch.save(self.Dec.state_dict(), os.path.join(self.config.model_dir, 'Dec_iter_{:06d}.pth'.format(self.step)))
-        torch.save(self.D1.state_dict(),  os.path.join(self.config.model_dir, 'D1_iter_{:06d}.pth'.format(self.step)))
-        torch.save(self.D2.state_dict(),  os.path.join(self.config.model_dir, 'D2_iter_{:06d}.pth'.format(self.step)))
+        torch.save({key: val.cpu() for key, val in self.Enc.state_dict().items()}, os.path.join(self.config.model_dir, 'Enc_iter_{:06d}.pth'.format(self.step)))
+        torch.save({key: val.cpu() for key, val in self.Dec.state_dict().items()}, os.path.join(self.config.model_dir, 'Dec_iter_{:06d}.pth'.format(self.step)))
+        torch.save({key: val.cpu() for key, val in self.D1.state_dict().items()},  os.path.join(self.config.model_dir, 'D1_iter_{:06d}.pth'.format(self.step)))
+        torch.save({key: val.cpu() for key, val in self.D2.state_dict().items()},  os.path.join(self.config.model_dir, 'D2_iter_{:06d}.pth'.format(self.step)))
 
     def train(self):
         self.writer = SummaryWriter(self.config.log_dir)
