@@ -2,6 +2,16 @@
 
 Taihong Xiao, Jiapeng Hong and Jinwen Ma
 
+Please cite our paper if you find it useful to your research.
+```
+@inproceedings{xiao2018elegant,
+  title={ELEGANT: Exchanging Latent Encodings with GAN for Transferring Multiple Face Attributes},
+  author={Xiao, Taihong and Hong, Jiapeng and Ma, Jinwen},
+  booktitle={European Conference on Computer Vision},
+  year={2018},
+  organization={Springer}
+}
+```
 
 ## Introduction
 
