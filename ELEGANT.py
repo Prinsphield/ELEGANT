@@ -107,9 +107,9 @@ class ELEGANT(object):
         if not hasattr(tensors, '__iter__'): tensors = [tensors]
         out = []
         for tensor in tensors:
-            var = torch.autograd.Variable(tensor, volatile=volatile)
             if len(self.gpu):
-                var = var.cuda(self.gpu[0])
+                tensor = tensor.cuda(self.gpu[0])
+            var = torch.autograd.Variable(tensor, volatile=volatile)
             out.append(var)
         if len(out) == 1:
             return out[0]
