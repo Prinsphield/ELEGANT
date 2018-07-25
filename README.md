@@ -146,3 +146,10 @@ Matrix Interpolation on Bangs and Mustache
 </div>
 <br/>
 
+## References
+
+- [GeneGAN: Learning Object Transfiguration and Attribute Subspace from Unpaired Data](https://github.com/Prinsphield/GeneGAN)
+- [DNA-GAN: Learning Disentangled Representations from Multi-Attribute Images](https://github.com/Prinsphield/DNA-GAN)
+
+
+
