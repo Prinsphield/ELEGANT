@@ -2,6 +2,16 @@
 
 Taihong Xiao, Jiapeng Hong and Jinwen Ma
 
+Please cite our paper if you find it useful to your research.
+```
+@inproceedings{xiao2018elegant,
+  title={ELEGANT: Exchanging Latent Encodings with GAN for Transferring Multiple Face Attributes},
+  author={Xiao, Taihong and Hong, Jiapeng and Ma, Jinwen},
+  booktitle={European Conference on Computer Vision},
+  year={2018},
+  organization={Springer}
+}
+```
 
 ## Introduction
 
@@ -135,4 +145,11 @@ The original image gradually owns the first attribute Bangs in the vertical dire
 Matrix Interpolation on Bangs and Mustache
 </div>
 <br/>
+
+## References
+
+- [GeneGAN: Learning Object Transfiguration and Attribute Subspace from Unpaired Data](https://github.com/Prinsphield/GeneGAN)
+- [DNA-GAN: Learning Disentangled Representations from Multi-Attribute Images](https://github.com/Prinsphield/DNA-GAN)
+
+
 
