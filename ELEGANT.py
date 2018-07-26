@@ -50,7 +50,7 @@ class ELEGANT(object):
             self.D2.train()
 
             if self.gpu:
-                with torch.cuda.device(self.gpu[0]):
+                with torch.cuda.device(0):
                     self.Enc.cuda()
                     self.Dec.cuda()
                     self.D1.cuda()
@@ -59,23 +59,23 @@ class ELEGANT(object):
                     self.recon_criterion.cuda()
 
             if len(self.gpu) > 1:
-                self.Enc = torch.nn.DataParallel(self.Enc, device_ids=self.gpu)
-                self.Dec = torch.nn.DataParallel(self.Dec, device_ids=self.gpu)
-                self.D1  = torch.nn.DataParallel(self.D1, device_ids=self.gpu)
-                self.D2  = torch.nn.DataParallel(self.D2, device_ids=self.gpu)
+                self.Enc = torch.nn.DataParallel(self.Enc, device_ids=list(range(len(self.gpu))))
+                self.Dec = torch.nn.DataParallel(self.Dec, device_ids=list(range(len(self.gpu))))
+                self.D1  = torch.nn.DataParallel(self.D1, device_ids=list(range(len(self.gpu))))
+                self.D2  = torch.nn.DataParallel(self.D2, device_ids=list(range(len(self.gpu))))
 
         elif self.mode == 'test':
             self.Enc.eval()
             self.Dec.eval()
 
             if self.gpu:
-                with torch.cuda.device(self.gpu[0]):
+                with torch.cuda.device(0):
                     self.Enc.cuda()
                     self.Dec.cuda()
 
             if len(self.gpu) > 1:
-                self.Enc = torch.nn.DataParallel(self.Enc, device_ids=self.gpu)
-                self.Dec = torch.nn.DataParallel(self.Dec, device_ids=self.gpu)
+                self.Enc = torch.nn.DataParallel(self.Enc, device_ids=list(range(len(self.gpu))))
+                self.Dec = torch.nn.DataParallel(self.Dec, device_ids=list(range(len(self.gpu))))
 
         else:
             raise NotImplementationError()
@@ -109,7 +109,7 @@ class ELEGANT(object):
         for tensor in tensors:
             var = torch.autograd.Variable(tensor, volatile=volatile)
             if len(self.gpu):
-                var = var.cuda(self.gpu[0])
+                var = var.cuda(0)
             out.append(var)
         if len(out) == 1:
             return out[0]
@@ -425,7 +425,7 @@ class ELEGANT(object):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-a', '--attributes', nargs='+', type=str, help='Specify attribute names.')
-    parser.add_argument('-g', '--gpu', default=[], nargs='+', type=int, help='Specify GPU ids.')
+    parser.add_argument('-g', '--gpu', default=[], nargs='+', type=str, help='Specify GPU ids.')
     parser.add_argument('-m', '--mode', default='train', type=str, choices=['train', 'test'])
     parser.add_argument('-r', '--restore', default=None, action='store', type=int, help='Specify checkpoint id to restore')
 
@@ -441,6 +441,7 @@ def main():
     args = parser.parse_args()
     print(args)
 
+    os.environ['CUDA_VISIBLE_DEVICES'] = ','.join(args.gpu)
     if args.mode == 'test':
         assert args.swap + args.linear + args.matrix == 1
         assert args.restore is not None
