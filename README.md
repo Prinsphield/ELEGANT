@@ -73,8 +73,9 @@ We provide four types of mode for testing. Let me explain all the parameters for
 
 - `-a`: All attributes' names.
 - `-r`: Restore checkpoint.
-- `-g`: The gpu id(s) for testing.
+- `-g`: The GPU id(s) for testing.
 	- Don't add this parameter to your shell command if you don't want to use gpu for testing.
+    - No more than 1 GPU should be specified during test, because 1 image cannot be split into multiple GPUs.
 - `--swap`: Swap attribute of two images.
 - `--linear`: Linear interpolation by adding or removing one certain attribute.
 - `--matrix`: Matrix interpolation with respect to one or two attributes.
