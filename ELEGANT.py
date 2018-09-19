@@ -275,7 +275,6 @@ class ELEGANT(object):
 
     def train(self):
         for self.step in range(self.start_step, 1 + self.config.max_iter):
-            if self.step > self.start_step + 3: break;
             self.G_lr_scheduler.step()
             self.D_lr_scheduler.step()
 
@@ -311,8 +310,7 @@ class ELEGANT(object):
             if self.step % 100 == 0:
                 self.save_scalar_log()
 
-            # if self.step % 2000 == 0:
-            if 1:
+            if self.step % 2000 == 0:
                 self.save_model()
 
         print('Finished Training!')
