@@ -7,7 +7,8 @@ Please cite our paper if you find it useful to your research.
 @InProceedings{Xiao_2018_ECCV,
     author = {Xiao, Taihong and Hong, Jiapeng and Ma, Jinwen},
     title = {ELEGANT: Exchanging Latent Encodings with GAN for Transferring Multiple Face Attributes},
-    booktitle = {The European Conference on Computer Vision (ECCV)},
+    booktitle = {Proceedings of the European Conference on Computer Vision (ECCV)},
+    pages = {172--187},
     month = {September},
     year = {2018}
 }
