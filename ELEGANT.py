@@ -144,7 +144,8 @@ class ELEGANT(object):
         per_chs = float(num_chs) / self.n_attributes
         start = int(np.rint(per_chs * attribute_id))
         end = int(np.rint(per_chs * (attribute_id + 1)))
-        return encodings[:, start:end]
+        # return encodings[:, start:end]
+        return encodings.narrow(1, start, end-start)
 
     def forward_G(self):
         self.z_A, self.A_skip = self.Enc(self.A, return_skip=True)
@@ -247,8 +248,8 @@ class ELEGANT(object):
 
     def save_scalar_log(self):
         scalar_info = {
-            'loss_D': self.loss_D.data.cpu().numpy(),
-            'loss_G': self.loss_G.data.cpu().numpy(),
+            'loss_D': self.loss_D.data.cpu().numpy()[0],
+            'loss_G': self.loss_G.data.cpu().numpy()[0],
             'G_lr'  : self.G_lr_scheduler.get_lr()[0],
             'D_lr'  : self.D_lr_scheduler.get_lr()[0],
         }
@@ -263,11 +264,7 @@ class ELEGANT(object):
             self.writer.add_scalar(tag, value, self.step)
 
     def save_model(self):
-        def reduced(key):
-            if key.startswith('module.'):
-                return key[7:]
-            else:
-                return key
+        reduced = lambda key: key[7:] if key.startswith('module.') else key
         torch.save({reduced(key): val.cpu() for key, val in self.Enc.state_dict().items()}, os.path.join(self.config.model_dir, 'Enc_iter_{:06d}.pth'.format(self.step)))
         torch.save({reduced(key): val.cpu() for key, val in self.Dec.state_dict().items()}, os.path.join(self.config.model_dir, 'Dec_iter_{:06d}.pth'.format(self.step)))
         torch.save({reduced(key): val.cpu() for key, val in self.D1.state_dict().items()},  os.path.join(self.config.model_dir, 'D1_iter_{:06d}.pth'.format(self.step)))
@@ -452,7 +449,7 @@ def main():
     args = parser.parse_args()
     print(args)
 
-    os.environ['CUDA_VISIBLE_DEVICES'] = ','.join(args.gpu)
+    # os.environ['CUDA_VISIBLE_DEVICES'] = ','.join(args.gpu)
     if args.mode == 'test':
         assert args.swap + args.linear + args.matrix == 1
         assert args.restore is not None
