@@ -28,6 +28,8 @@ The ELEGANT Model Framework
 </div>
 <br/>
 
+**If you want to train or test the model on your own images, please do the facial landmark alignment first. We preprocess the whole datasete using 5p alignment [here](https://github.com/Prinsphield/ELEGANT/blob/master/preprocess.py). However, you can use other alignment algorithm as long as it is consistent in both training and testing phases.**
+
 
 ## Requirements
 
@@ -92,7 +94,6 @@ We provide four types of mode for testing. Let me explain all the parameters for
 - `-s`: The output size for interpolation.
 	- **One** integer is needed in the `--linear` mode.
 	- **Two** integers are required for the `--matrix` mode.
-
 
 ### 1. Swap Attribute
 
