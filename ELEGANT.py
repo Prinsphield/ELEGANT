@@ -92,7 +92,7 @@ class ELEGANT(object):
             self.D_lr_scheduler = torch.optim.lr_scheduler.StepLR(self.optimizer_D, step_size=self.config.step_size, gamma=self.config.gamma)
             if self.restore is not None:
                 for _ in range(self.restore):
-                    self.D_lr_scheduler.step()
+                    self.G_lr_scheduler.step()
                     self.D_lr_scheduler.step()
 
             if self.gpu:
