@@ -449,7 +449,7 @@ def main():
     args = parser.parse_args()
     print(args)
 
-    # os.environ['CUDA_VISIBLE_DEVICES'] = ','.join(args.gpu)
+    os.environ['CUDA_VISIBLE_DEVICES'] = ','.join(args.gpu)
     if args.mode == 'test':
         assert args.swap + args.linear + args.matrix == 1
         assert args.restore is not None
